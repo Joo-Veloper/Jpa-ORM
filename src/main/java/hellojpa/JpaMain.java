@@ -15,7 +15,12 @@ public class JpaMain {
         tx.begin();
         try {
 //            Member findMember = em.find(Member.class, 1L);
-            // JPQL
+            // JPQL(엔티티 객체) 대상으로 쿼리 -> 장점 방언(oracle, mysql, h2 등 )으로 바꾸거나해도 이 코드를 이 jpql자체 변경 안해도 됨!!!
+            // SQL(데이터베이스 테이블) 대상으로 쿼리
+            // JPA 사용하면 엔티티 객체를 중심으로 개발하게 된다.
+            // 검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색한다.
+            // 모든 DB를 객체로 변환하여 검색 불가능!
+            // 애플리케이션에 필요한 데이터만 DB에 불러오면 결국 검색 조건이 포함된 SQL 날려야함!
             List<Member> result = em.createQuery("select m from Member as m", Member.class)
                     .setFirstResult(5) // 5번부터 8개 가져와
                     .setMaxResults(8)
@@ -34,6 +39,6 @@ public class JpaMain {
     }
 }
 // 주의
-// 엔티티 매니저 팩토리는 하나만 생성해서 애플리케이션 전체에서 공유!!
-// 엔티티 매니저는 쓰레드간에 공유하면 안됨!!*사용하고 버려야함
-// JPA의 모든 데이터 변경은 트랜잭션 안에서 실행 !!
+// 엔티티 매니저 팩토리는 하나만 생성해서 애플리케이션 전체에서 공유
+// 엔티티 매니저는 쓰레드간에 공유하면 안됨!! 사용하고 버려야함
+// JPA의 모든 데이터 변경은 트랜잭션 안에서 실행
