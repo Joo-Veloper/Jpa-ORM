@@ -17,6 +17,8 @@ public class JpaMain {
 //            Member findMember = em.find(Member.class, 1L);
             // JPQL
             List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    .setFirstResult(5) // 5번부터 8개 가져와
+                    .setMaxResults(8)
                     .getResultList(); // JPA는 테이블 대상으로 절때 코드 짜지 않는다.!
             for(Member member : result) {
                 System.out.println("member.name = " + member.getName());
