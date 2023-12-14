@@ -13,9 +13,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member findMember = em.find(Member.class, 1L); // 조회
-            System.out.println("findmember.id = " + findMember.getId());
-            System.out.println("findmember.name = " + findMember.getName());
+            Member findMember = em.find(Member.class, 1L);
+
+            em.remove(findMember); // 삭제
+
         } catch (Exception e) {
             tx.rollback();
         } finally {
