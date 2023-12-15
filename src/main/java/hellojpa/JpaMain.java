@@ -15,12 +15,10 @@ public class JpaMain {
         tx.begin();
         try {
             // 영속
-            Member member = new Member(200L, "member200");
-            em.persist(member);
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAAA");
 
-            //데이터베이스에 반영을 하고 싶거나 쿼리를 미리 보고 싶다면 flush사용하여 강제 호출
-            //flush 영속성 컨텍스트의 변경내용을 데이터베이스에 동기화 한다.
-            em.flush();
+            em.detach(member); //특정 엔티티만 준영속 상태로 전환할 때는 detach 사용
 
             System.out.println("====================");
 
@@ -118,3 +116,19 @@ public class JpaMain {
 //        System.out.println("====================");
 //
 //        tx.commit();
+
+
+// flush
+// try {
+//         // 영속
+//         Member member = new Member(200L, "member200");
+//         em.persist(member);
+//
+//         //데이터베이스에 반영을 하고 싶거나 쿼리를 미리 보고 싶다면 flush사용하여 강제 호출
+//         //flush 영속성 컨텍스트의 변경내용을 데이터베이스에 동기화 한다.
+//         em.flush();
+//
+//         System.out.println("====================");
+//
+//         tx.commit();
+//         }
