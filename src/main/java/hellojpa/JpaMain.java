@@ -18,9 +18,12 @@ public class JpaMain {
             Member member = em.find(Member.class, 150L);
             member.setName("AAAAA");
 
-            em.detach(member); //특정 엔티티만 준영속 상태로 전환할 때는 detach 사용
+//            em.detach(member); //특정 엔티티만 준영속 상태로 전환할 때는 detach 사용
+            em.clear();// 엔티티 매니저 안에 있는 영속성 컨텍스트를 통째로 지워버림!
 
             System.out.println("====================");
+
+            Member member2 = em.find(Member.class, 150L);
 
             tx.commit();
         } catch (Exception e) {
