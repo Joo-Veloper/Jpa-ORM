@@ -1,9 +1,7 @@
 package hellojpa;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 //@Table(name = "USER") //멤버 이름이 다를때 : 데이터 베이스에 멤버가 아니라 유저 라고
@@ -13,7 +11,13 @@ public class Member {
     private Long id;
 //    @Column을 매핑해주면 됩니다. @Column(name = "username")
     private String name;
-    public Long getId() {
+    public Member() {
+    }
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+   public Long getId() {
         return id;
     }
     public void setId(Long id) {

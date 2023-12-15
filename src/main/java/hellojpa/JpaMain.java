@@ -15,11 +15,14 @@ public class JpaMain {
         tx.begin();
         try {
            // 영속
-            // JPA는 엔티티를 조회하거나 하면 무조건 영속성 컨텍스트에 다 올립니다.
-            Member findMember1 = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
-            System.out.println("result = " + (findMember1 == findMember2));
-            //jpa가 이 영속 엔티티의 동일성을 보장해줍니다. == 비교를 보장해줍니다.
+           Member member1 = new Member(150L,"A");
+           Member member2 = new Member(160L,"B");
+
+           // 이 순간 DB에 저장되는게 아니라 그냥 영속성 컨텍스트에 차곡차곡 (엔티티, 쿼리) 쌓이게 됩니다.
+           em.persist(member1);
+           em.persist(member2);
+
+            System.out.println("====================");
 
             tx.commit();
         } catch (Exception e) {
@@ -80,3 +83,11 @@ public class JpaMain {
 //        System.out.println("findMember.name = " + findMember.getName());
 //        tx.commit();
 //        }
+
+
+//    // 영속
+//    // JPA는 엔티티를 조회하거나 하면 무조건 영속성 컨텍스트에 다 올립니다.
+//    Member findMember1 = em.find(Member.class, 101L);
+//    Member findMember2 = em.find(Member.class, 101L);
+//            System.out.println("result = " + (findMember1 == findMember2));
+////jpa가 이 영속 엔티티의 동일성을 보장해줍니다. == 비교를 보장해줍니다.
