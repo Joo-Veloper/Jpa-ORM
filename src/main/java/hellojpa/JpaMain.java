@@ -14,19 +14,12 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-
-            //비영속
-            Member member = new Member();
-            member.setId(100L);
-            member.setName("HelloJPA");
-
-            // 영속
-            System.out.println("===BEFORE===");
-            em.persist(member); // 메니저 안에 있는 영속성 컨텍스트라는 데를 통해서 이 멤버가 관리가 된다! (DB저장 되진 않음)
-//            em.detach(member); // 영속성 컨텍스트에서 다시 지움
-
-            System.out.println("===AFTER===");
-
+           // 영속
+            // JPA는 엔티티를 조회하거나 하면 무조건 영속성 컨텍스트에 다 올립니다.
+            Member findMember1 = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
+            System.out.println("result = " + (findMember1 == findMember2));
+            //jpa가 이 영속 엔티티의 동일성을 보장해줍니다. == 비교를 보장해줍니다.
 
             tx.commit();
         } catch (Exception e) {
@@ -66,3 +59,24 @@ public class JpaMain {
 //            for(Member member : result) {
 //                System.out.println("member.name = " + member.getName());
 //            }
+
+// 비영속 영속
+//try {
+//
+//        //비영속
+//        Member member = new Member();
+//        member.setId(101L);
+//        member.setName("HelloJPA");
+//
+//        // 영속
+//        System.out.println("===BEFORE===");
+//        em.persist(member); // 메니저 안에 있는 영속성 컨텍스트라는 데를 통해서 이 멤버가 관리가 된다! (DB저장 되진 않음)
+////            em.detach(member); // 영속성 컨텍스트에서 다시 지움
+//        System.out.println("===AFTER===");
+//
+//        Member findMember = em.find(Member.class, 101L);
+//
+//        System.out.println("findMember.id = " + findMember.getId());
+//        System.out.println("findMember.name = " + findMember.getName());
+//        tx.commit();
+//        }
