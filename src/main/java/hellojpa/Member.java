@@ -13,6 +13,7 @@ public class Member {
     private Long id;
 //    @Column을 매핑해주면 됩니다. @Column(name = "username")
     private String name;
+    private int age;
     public Member() {
     }
     public Member(Long id, String name) {
