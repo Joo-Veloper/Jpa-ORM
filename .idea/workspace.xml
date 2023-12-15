@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b39f65f-11f1-4f73-b0e1-6a22c63a8b2a" name="Changes" comment="">
+    <list default="true" id="6b39f65f-11f1-4f73-b0e1-6a22c63a8b2a" name="Changes" comment="삭제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/JpaMain.java" afterDir="false" />
     </list>
@@ -88,6 +88,7 @@
       <workItem from="1702539562776" duration="2462000" />
       <workItem from="1702542054643" duration="2543000" />
       <workItem from="1702547968746" duration="1811000" />
+      <workItem from="1702616508199" duration="1273000" />
     </task>
     <task id="LOCAL-00001" summary="xml.init">
       <option name="closed" value="true" />
