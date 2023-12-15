@@ -15,9 +15,12 @@ public class JpaMain {
         tx.begin();
         try {
             // 영속
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZZ");
-//            em.persist(member); // list array처럼 값을 변경후 커밋 안하는 것처럼 JPA도 똑같음
+            Member member = new Member(200L, "member200");
+            em.persist(member);
+
+            //데이터베이스에 반영을 하고 싶거나 쿼리를 미리 보고 싶다면 flush사용하여 강제 호출
+            //flush 영속성 컨텍스트의 변경내용을 데이터베이스에 동기화 한다.
+            em.flush();
 
             System.out.println("====================");
 
@@ -102,3 +105,16 @@ public class JpaMain {
 //
 //        tx.commit();
 //        }
+
+
+//  try {
+//          // 영속
+//          //jpa는 값을 바꾸면 트랜잭션이 커밋되는 시점에 변경을 반영하는 구나 라고 생각하고 코드를 작성!
+//          Member member = em.find(Member.class, 150L);
+//        member.setName("ZZZZZ");
+//
+////            em.persist(member); // list array처럼 값을 변경후 커밋 안하는 것처럼 JPA도 똑같음
+//
+//        System.out.println("====================");
+//
+//        tx.commit();
