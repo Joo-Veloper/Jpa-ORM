@@ -14,13 +14,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-           // 영속
-           Member member1 = new Member(150L,"A");
-           Member member2 = new Member(160L,"B");
-
-           // 이 순간 DB에 저장되는게 아니라 그냥 영속성 컨텍스트에 차곡차곡 (엔티티, 쿼리) 쌓이게 됩니다.
-           em.persist(member1);
-           em.persist(member2);
+            // 영속
+            Member member = em.find(Member.class, 150L);
+            member.setName("ZZZZZ");
+//            em.persist(member); // list array처럼 값을 변경후 커밋 안하는 것처럼 JPA도 똑같음
 
             System.out.println("====================");
 
@@ -39,7 +36,6 @@ public class JpaMain {
 // JPA의 모든 데이터 변경은 트랜잭션 안에서 실행
 
 
-
 //JPA 어플리케이션 개발
 //public static void main(String[] args) {
 //    EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -49,12 +45,12 @@ public class JpaMain {
 //    tx.begin();
 //    try {
 //            Member findMember = em.find(Member.class, 1L);
-        // JPQL(엔티티 객체) 대상으로 쿼리 -> 장점 방언(oracle, mysql, h2 등 )으로 바꾸거나해도 이 코드를 이 jpql자체 변경 안해도 됨!!!
-        // SQL(데이터베이스 테이블) 대상으로 쿼리
-        // JPA 사용하면 엔티티 객체를 중심으로 개발하게 된다.
-        // 검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색한다.
-        // 모든 DB를 객체로 변환하여 검색 불가능!
-        // 애플리케이션에 필요한 데이터만 DB에 불러오면 결국 검색 조건이 포함된 SQL 날려야함!
+// JPQL(엔티티 객체) 대상으로 쿼리 -> 장점 방언(oracle, mysql, h2 등 )으로 바꾸거나해도 이 코드를 이 jpql자체 변경 안해도 됨!!!
+// SQL(데이터베이스 테이블) 대상으로 쿼리
+// JPA 사용하면 엔티티 객체를 중심으로 개발하게 된다.
+// 검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색한다.
+// 모든 DB를 객체로 변환하여 검색 불가능!
+// 애플리케이션에 필요한 데이터만 DB에 불러오면 결국 검색 조건이 포함된 SQL 날려야함!
 //            List<Member> result = em.createQuery("select m from Member as m", Member.class)
 //                    .setFirstResult(5) // 5번부터 8개 가져와
 //                    .setMaxResults(8)
@@ -91,3 +87,18 @@ public class JpaMain {
 //    Member findMember2 = em.find(Member.class, 101L);
 //            System.out.println("result = " + (findMember1 == findMember2));
 ////jpa가 이 영속 엔티티의 동일성을 보장해줍니다. == 비교를 보장해줍니다.
+
+
+//try {
+//        // 영속
+//        Member member1 = new Member(150L,"A");
+//        Member member2 = new Member(160L,"B");
+//
+//        // 이 순간 DB에 저장되는게 아니라 그냥 영속성 컨텍스트에 차곡차곡 (엔티티, 쿼리) 쌓이게 됩니다.
+//        em.persist(member1);
+//        em.persist(member2);
+//
+//        System.out.println("====================");
+//
+//        tx.commit();
+//        }
