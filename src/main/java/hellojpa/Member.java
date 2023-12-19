@@ -10,8 +10,13 @@ public class Member {
     private Long id;
     @Column(name = "USERNAME")
     private String username;
-    @Column(name = "TEAM_ID")
-    private Long teamId;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
+
+//    @ManyToOne(fetch = FetchType.LAZY) //fetch 사용하면 쿼리가 분리 되어서 나갑니다.(지연 로딩 전략)
+    @ManyToOne // Mmeber와 Team을 보면 Member가 N이고 Team 1이기 때문에 Member 메서드에서 Team과 연관관계이기 때문에 ManyToOne 사용!
+    @JoinColumn(name = "TEAM_ID") // 이관계와 Join하는 컬럼이 무엇인지 적어줌!
+    private Team team;
 
     public Long getId() {
         return id;
@@ -29,11 +34,11 @@ public class Member {
         this.username = username;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
