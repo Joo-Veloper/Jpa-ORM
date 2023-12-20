@@ -13,6 +13,10 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "TEAM_ID",insertable = false, updatable = false) //insertable, updatable을 이용하면 읽기 전용이됩니다.
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
 
