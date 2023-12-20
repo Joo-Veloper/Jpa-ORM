@@ -1,6 +1,8 @@
 package hellojpa;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -10,13 +12,25 @@ public class Member {
     private Long id;
     @Column(name = "USERNAME")
     private String username;
+
+    //TEAM
     @ManyToOne
     @JoinColumn(name = "TEAM_ID",insertable = false, updatable = false) //insertable, updatable을 이용하면 읽기 전용이됩니다.
     private Team team;
 
+    // LOCKER
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
+
+    // PRODUCT(N:N) N:N은 사용 안하는게 좋음!
+//    @ManyToMany
+//    @JoinTable(name = "MEMBER_PRODUCT")
+//    private List<Product> products = new ArrayList<>();
+
+    //MEMBER PRODUCT (1:N)
+    @OneToMany(mappedBy ="member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
 
@@ -42,21 +56,4 @@ public class Member {
         this.username = username;
     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Member{" +
-//                "id=" + id +
-//                ", username='" + username + '\'' +
-//                ", team=" + team +
-//                '}';
-//    }
 }

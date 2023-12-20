@@ -8,7 +8,7 @@ public class Locker {
     @GeneratedValue
     private Long id;
     private String name;
-    //1:1
-    @OneToOne(mappedBy = "locker")
-    private Locker locker;
+    // 1:1
+    // @OneToOne(mappedBy = "locker")
+    // private Locker locker; // 읽기 전용이됨
 }
