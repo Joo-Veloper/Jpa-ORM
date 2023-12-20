@@ -11,18 +11,29 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
+    //ORDER
     @Column(name = "ORDER_ID")
     private Long id;
 
+    //MEMBER
     @ManyToOne
     @JoinColumn(name = "MEBER_ID")
     private Member member;
 
+    //DELIVERY
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
+    //ORDERITEM
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
     private LocalDateTime orderDate; //참고 = ORDER_DATE, order_date -> rule 이 있음!
+
     @Enumerated(EnumType.STRING) // EnumType Ordinal 사용 xx
     private OrderStatus status;
+
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
