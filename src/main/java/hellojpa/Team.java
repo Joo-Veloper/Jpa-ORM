@@ -23,7 +23,8 @@ public class Team {
 //        member.setTeam(this);
 //        members.add(member);
 //    }
-    @OneToMany(mappedBy = "team")
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID") // 일대다 단방향은 Join컬럼 사용!!
     private List<Member> members = new ArrayList<>();
 
     public Long getId() {
@@ -42,7 +43,15 @@ public class Team {
         this.name = name;
     }
 
-//    public List<Member> getMembers() {
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
+
+    //    public List<Member> getMembers() {
 //        return members;
 //    }
 //
