@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team extends BaseEntity{
     @Id
     @GeneratedValue
     @Column(name = "TEAM_ID")
@@ -26,6 +26,7 @@ public class Team {
     @OneToMany
     @JoinColumn(name = "TEAM_ID") // 일대다 단방향은 Join컬럼 사용!!
     private List<Member> members = new ArrayList<>();
+
 
     public Long getId() {
         return id;
