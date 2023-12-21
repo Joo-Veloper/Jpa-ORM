@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS") //DB에는 ORDER가 예약어로 걸려있기 때문에 ORDERS 많이 사용!
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -18,7 +18,7 @@ public class Order {
 
     //MEMBER
     @ManyToOne
-    @JoinColumn(name = "MEBER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     //DELIVERY

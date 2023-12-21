@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Category {
+public class Category extends BaseEntity{
     @Id
     @GeneratedValue
     private Long id;
@@ -13,7 +13,7 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
-    @OneToMany(mappedBy = "parrent")
+    @OneToMany(mappedBy = "parent")
     private List<Category> chiled = new ArrayList<>();
 
     @ManyToMany //하나의 카테고리에 여러가지 들어감
