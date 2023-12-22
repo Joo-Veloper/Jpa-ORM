@@ -1,8 +1,6 @@
 package hellojpa;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 //@MappedSuperclass
@@ -15,8 +13,10 @@ public class Member extends BaseEntity {
     private String username;
 
     //TEAM
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID",insertable = false, updatable = false) //insertable, updatable을 이용하면 읽기 전용이됩니다.
+    @ManyToOne(fetch = FetchType.LAZY)// 지연로딩
+//    @ManyToOne(fetch = FetchType.EAGER)// 즉시로딩 -> 멤버를 로딩을 할 때 팀까지 같이 조인해서 가지고 온다(실무 즉시 로딩 사용 x)
+    @JoinColumn(name = "TEAM_ID")
+//    @JoinColumn(name = "TEAM_ID",insertable = false, updatable = false) //insertable, updatable을 이용하면 읽기 전용이됩니다.
     private Team team;
 
     // LOCKER
