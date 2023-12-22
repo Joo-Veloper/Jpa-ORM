@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="204d9ae9-2628-42d4-9fdf-1c8e36659592" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/hellojpa/BaseEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/JpaMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +116,8 @@
       <workItem from="1703039985367" duration="1685000" />
       <workItem from="1703048639390" duration="7208000" />
       <workItem from="1703141764804" duration="7284000" />
+      <workItem from="1703154401977" duration="88000" />
+      <workItem from="1703225927121" duration="8301000" />
     </task>
     <servers />
   </component>

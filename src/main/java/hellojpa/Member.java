@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@MappedSuperclass
+//@MappedSuperclass
 public class Member extends BaseEntity {
     @Id
     @GeneratedValue
@@ -20,9 +20,9 @@ public class Member extends BaseEntity {
     private Team team;
 
     // LOCKER
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
 
     // PRODUCT(N:N) N:N은 사용 안하는게 좋음!
 //    @ManyToMany
@@ -30,8 +30,8 @@ public class Member extends BaseEntity {
 //    private List<Product> products = new ArrayList<>();
 
     //MEMBER PRODUCT (1:N)
-    @OneToMany(mappedBy ="member")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
+//    @OneToMany(mappedBy ="member")
+//    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
@@ -58,4 +58,27 @@ public class Member extends BaseEntity {
         this.username = username;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+//    LOCKER
+//    public Locker getLocker() {
+//        return locker;
+//    }
+//
+//    public void setLocker(Locker locker) {
+//        this.locker = locker;
+//    }
+//
+//    public List<MemberProduct> getMemberProducts() {
+//        return memberProducts;
+//    }
+//
+//    public void setMemberProducts(List<MemberProduct> memberProducts) {
+//        this.memberProducts = memberProducts;
+//    }
 }
