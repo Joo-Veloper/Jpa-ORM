@@ -4,13 +4,16 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class Category extends BaseEntity{
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToOne
+    // 글로벌 패치 전략으로 모든 연관관계를 지연로딩으로 (manyToOne, OneToOne은 기본이 즉시로딩이므로 지연로딩으로 변경)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
     @OneToMany(mappedBy = "parent")

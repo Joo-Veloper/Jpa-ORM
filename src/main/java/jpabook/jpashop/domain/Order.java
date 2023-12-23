@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Table(name = "ORDERS") //DB에는 ORDER가 예약어로 걸려있기 때문에 ORDERS 많이 사용!
 public class Order extends BaseEntity {
@@ -17,12 +19,14 @@ public class Order extends BaseEntity {
     private Long id;
 
     //MEMBER
-    @ManyToOne
+    // 글로벌 패치 전략으로 모든 연관관계를 지연로딩으로 (manyToOne, OneToOne은 기본이 즉시로딩이므로 지연로딩으로 변경)
+
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     //DELIVERY
-    @OneToOne
+    @OneToOne(fetch = LAZY)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
