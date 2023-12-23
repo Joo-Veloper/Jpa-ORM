@@ -1,42 +1,86 @@
 package hellojpa;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class JpaMain {
+
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
-        EntityManager em = emf.createEntityManager(); // 예를 들어 고객이 들어와서 행위를 하고 나가 이런걸 할 때 고객이 어떤 상품을 장바구니에 담아라던가 이런걸 할때마다
-        // DB 커넥션을 얻어서 쿼리를 날리고 종료되는 그런 한 일관적인 단위를 할 때마다 이 엔티티 메니저라는 애를 꼭 만들어주어야함!!
+        EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member member1= new Member();
-            member1.setUsername("A");
-            Member member2= new Member();
-            member2.setUsername("B");
-            Member member3 = new Member();
-            member3.setUsername("C");
-            System.out.println("==============");
-            em.persist(member1);
-            em.persist(member2);
-            em.persist(member3);
-            System.out.println("member1 = " + member1.getId());
-            System.out.println("member1 = " + member2.getId());
-            System.out.println("member1 = " + member3.getId());
-            System.out.println("==============");
+            Child child1 = new Child();
+            Child child2 = new Child();
+
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            em.persist(parent);
+            em.persist(child1);
+            em.persist(child2);
+
+            em.flush();
+            em.clear();
+
+            Parent findParent = em.find(Parent.class, parent.getId());
+            em.remove(findParent);
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }
         emf.close();
     }
 }
+
+
+
+
+
+//public class JpaMain {
+//    public static void main(String[] args) {
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+//        EntityManager em = emf.createEntityManager(); // 예를 들어 고객이 들어와서 행위를 하고 나가 이런걸 할 때 고객이 어떤 상품을 장바구니에 담아라던가 이런걸 할때마다
+//        // DB 커넥션을 얻어서 쿼리를 날리고 종료되는 그런 한 일관적인 단위를 할 때마다 이 엔티티 메니저라는 애를 꼭 만들어주어야함!!
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin();
+//        try {
+//            Member member1= new Member();
+//            member1.setUsername("A");
+//            Member member2= new Member();
+//            member2.setUsername("B");
+//            Member member3 = new Member();
+//            member3.setUsername("C");
+//            System.out.println("==============");
+//            em.persist(member1);
+//            em.persist(member2);
+//            em.persist(member3);
+//            System.out.println("member1 = " + member1.getId());
+//            System.out.println("member1 = " + member2.getId());
+//            System.out.println("member1 = " + member3.getId());
+//            System.out.println("==============");
+//
+//            tx.commit();
+//        } catch (Exception e) {
+//            tx.rollback();
+//        } finally {
+//            em.close();
+//        }
+//        emf.close();
+//    }
+//}
+
+
+
 // 주의
 // 엔티티 매니저 팩토리는 하나만 생성해서 애플리케이션 전체에서 공유
 // 엔티티 매니저는 쓰레드간에 공유하면 안됨!! 사용하고 버려야함
