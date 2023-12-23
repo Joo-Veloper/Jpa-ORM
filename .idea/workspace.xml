@@ -97,7 +97,7 @@
       <recent name="hellojpa" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.JpaMain">
+  <component name="RunManager" selected="Application.ValueMain">
     <configuration name="JpaMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hellojpa.JpaMain" />
       <module name="ex1-hello-jpa" />
@@ -126,8 +126,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.JpaMain" />
         <item itemvalue="Application.ValueMain" />
+        <item itemvalue="Application.JpaMain" />
       </list>
     </recent_temporary>
   </component>
