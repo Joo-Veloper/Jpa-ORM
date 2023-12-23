@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8e3986f-699c-41bc-b2b3-5b11adb281e6" name="Changes" comment="" />
+    <list default="true" id="c8e3986f-699c-41bc-b2b3-5b11adb281e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/jpabook/jpashop/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jpabook/jpashop/domain/Order.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,6 +126,7 @@
       <workItem from="1703140859935" duration="64000" />
       <workItem from="1703141735924" duration="26000" />
       <workItem from="1703152951471" duration="2507000" />
+      <workItem from="1703316174740" duration="553000" />
     </task>
     <servers />
   </component>

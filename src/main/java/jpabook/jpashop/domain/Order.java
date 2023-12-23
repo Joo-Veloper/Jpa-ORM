@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -26,12 +27,14 @@ public class Order extends BaseEntity {
     private Member member;
 
     //DELIVERY
-    @OneToOne(fetch = LAZY)
+//    영속성 전이 설정 ALL로!!!
+    @OneToOne(fetch = LAZY, cascade = ALL)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
     //ORDERITEM
-    @OneToMany(mappedBy = "order")
+//    영속성 전이 설정 ALL로!!!
+    @OneToMany(mappedBy = "order",cascade = ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
     private LocalDateTime orderDate; //참고 = ORDER_DATE, order_date -> rule 이 있음!
 
