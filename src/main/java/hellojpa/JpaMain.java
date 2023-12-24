@@ -18,26 +18,17 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            //Criteria 사용 준비
-//            CriteriaBuilder cb = em.getCriteriaBuilder();
-//            CriteriaQuery<Member> query = cb.createQuery(Member.class);
-//            Root<Member> m = query.from(Member.class);
-//            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("username"), "kim"));
-//            List<Member> resultList = em.createQuery(cq).getResultList();
+            Member member = new Member();
+            member.setUsername("member1");
+            em.persist(member);
 
-            // 동적 쿼리
-            // 오타 나도 문제 없고 컴파일 시점에서 잡아주는 장점 !!
-            // SQL 스럽지 않다는 단점!
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Member> query = cb.createQuery(Member.class);
-            Root<Member> m = query.from(Member.class);
-            CriteriaQuery<Member> cq = query.select(m);
+            //flush -> commit, query
 
-            String username = "dsafas";
-            if(username != null) {
-                cq = cq.where(cb.equal(m.get("username"), "kim"));
+            List<Member> resultList = em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER")
+                    .getResultList();
+            for (Member member1 : resultList) {
+                System.out.println("member1 = " + member1);
             }
-            List<Member> resultList = em.createQuery(cq).getResultList();
 
             tx.commit();
         } catch (Exception e) {
